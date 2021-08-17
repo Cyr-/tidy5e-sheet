@@ -976,6 +976,10 @@
       color: var(--secondary-color);
       overflow: hidden;
 
+      &.no-border {
+        border-left-color: transparent;
+      }
+
       span.truncate {
         white-space: nowrap;
         overflow: hidden;

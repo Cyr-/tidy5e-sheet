@@ -214,7 +214,9 @@
               <path d="M141 19.5c5.569.15 11.227 2.296 15.75 3.75h3.75c7.851 2.547 17.641 4.223 25.5 6.75h3.75v.75h3v.75h3v.75q3.375.375 6.75.75a48.187 48.187 0 0 0 13.5 3q.375-11.624.75-23.25h.75c1.023-3.609-1.387-9.601.75-12q.75 18.373 1.5 36.75 14.999 3.375 30 6.75V39c1.185-1.381.748-4.964.75-7.5V12.75c.001-2.661-.519-6.785.75-8.25q.375 24.373.75 48.75c6.384 19.734 11.16 41.548 17.25 61.5q1.125 11.249 2.25 22.5c1.331 4.579 1.676 11.168 3 15.75v6h.75v5.25c1.476 5.048 2.422 13.129 3 18.75h-34.5c-2.096 5.745-.75 21.588-.75 29.25V276h20.25c.378 4.786 2.976 9.644 4.5 13.5q.375 2.625.75 5.25h.75q.375 2.25.75 4.5h.75v2.25h.75v2.25h.75V306h.75v2.25h.75v2.25h.75q.375 2.25.75 4.5a26.43 26.43 0 0 1 2.25 6.75h.75v.75h-.75c-1.908 1.658-14.854.75-18.75.75H0Q7.499 299.627 15 276h20.25v-92.25c-2.883-1.06-7.968-.75-12-.75H0a59.894 59.894 0 0 1 2.25-13.5v-6H3v-5.25h.75V153h.75v-6c2.391-8.11 2.124-18.886 4.5-27v-6c6.17-19.86 11.206-41.636 17.25-61.5q.375-17.623.75-35.25c0-3.561-1.082-11.419.75-13.5v36h.75v4.5q14.999-3.375 30-6.75v-12h.75V6.75H60V1.5h.75q.375 11.999.75 24h.75c1.022 3.617-.295 8.442.75 11.25 7.162-2.558 16.108-3.581 23.25-6q3-.375 6-.75v-.75H96v-.75h3v-.75h3V27h3.75v-.75h3v-.75h3v-.75h3.75c6.239-2.021 14.608-4.451 21.75-5.25v-2.25h.75V6.75h.75c.711-2.472-.658-5.192.75-6.75a106.569 106.569 0 0 0 1.5 19.5z" style="fill:#a6a5a5;fill-rule:evenodd"/>
               </svg>
               <span class="label">AC</span>
-              <input class="value" name="data.attributes.ac.value" type="text" value="{{data.attributes.ac.value}}" data-dtype="Number" placeholder="10"maxlength="2">
+              <div class="attribute-value attributable" data-property="attributes.ac">
+                <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}">{{data.attributes.ac.value}}</a>
+              </div>
             </li>
             <li class="header-attribute initiative">
               <h4 class="attribute-name rollable" data-action="rollInitiative" title="{{ localize 'SW5E.Initiative' }}">Ini</h4>
@@ -396,47 +398,52 @@
 
       {{!-- Biography Tab --}}
       <div class="tab biography" data-group="primary" data-tab="biography">
-        <div class="top-notes note-entries">
-          <article>
-            <ul class="character-details">
-              <li><span>{{ localize "TIDY5E.Gender" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-gender" data-maxlength="40">{{data.details.gender}}</span><input data-input="{{actor._id}}-gender" type="hidden" name="data.details.gender" value="{{data.details.gender}}"></li>
-              <li><span>{{ localize "TIDY5E.Age" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-age" data-maxlength="5">{{data.details.age}}</span><input data-input="{{actor._id}}-age" type="hidden" name="data.details.age" value="{{data.details.age}}"></li>
-              <li><span>{{ localize "TIDY5E.Height" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-height" data-maxlength="20">{{data.details.height}}</span><input data-input="{{actor._id}}-height" type="hidden" name="data.details.height" value="{{data.details.height}}"></li>
-              <li><span>{{ localize "TIDY5E.Weight" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-weight" data-maxlength="20">{{data.details.weight}}</span><input data-input="{{actor._id}}-weight" type="hidden" name="data.details.weight" value="{{data.details.weight}}"></li>
-              <li><span>{{ localize "TIDY5E.Eyes" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-eyes" data-maxlength="40">{{data.details.eyes}}</span><input data-input="{{actor._id}}-eyes" type="hidden" name="data.details.eyes" value="{{data.details.eyes}}"></li>
-              <li><span>{{ localize "TIDY5E.Skin" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-skin" data-maxlength="40">{{data.details.skin}}</span><input data-input="{{actor._id}}-skin" type="hidden" name="data.details.skin" value="{{data.details.skin}}"></li>
-              <li><span>{{ localize "TIDY5E.Hair" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-hair" data-maxlength="40">{{data.details.hair}}</span><input data-input="{{actor._id}}-hair" type="hidden" name="data.details.hair" value="{{data.details.hair}}"></li>
-            </ul>
-          </article>
-        </div>
-        <div class="left-notes note-entries">
-          <article>
-            <div class="section-titles biopage">{{ localize "SW5E.PersonalityTraits" }}</div>
-            {{editor content=data.details.trait target="data.details.trait" button=true owner=owner editable=editable}}
-          </article>
-          <article>
-            <div class="section-titles biopage">{{ localize "SW5E.Ideals" }}</div>
-            {{editor content=data.details.ideal target="data.details.ideal" button=true owner=owner editable=editable}}
-          </article>
-          <article>
-            <div class="section-titles biopage">{{ localize "SW5E.Bonds" }}</div>
-            {{editor content=data.details.bond target="data.details.bond" button=true owner=owner editable=editable}}
-          </article>
-          <article>
-            <div class="section-titles biopage">{{ localize "SW5E.Flaws" }}</div>
-            {{editor content=data.details.flaw target="data.details.flaw" button=true owner=owner editable=editable}}
-          </article>
-        </div>
+        <div class="notes-container">
+          <div class="top-notes note-entries">
+            <article>
+              <ul class="character-details">
+                <li><span>{{ localize "TIDY5E.Gender" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-gender" data-maxlength="40">{{data.details.gender}}</span><input data-input="{{actor._id}}-gender" type="hidden" name="data.details.gender" value="{{data.details.gender}}"></li>
+                <li><span>{{ localize "TIDY5E.Age" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-age" data-maxlength="5">{{data.details.age}}</span><input data-input="{{actor._id}}-age" type="hidden" name="data.details.age" value="{{data.details.age}}"></li>
+                <li><span>{{ localize "TIDY5E.Height" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-height" data-maxlength="20">{{data.details.height}}</span><input data-input="{{actor._id}}-height" type="hidden" name="data.details.height" value="{{data.details.height}}"></li>
+                <li><span>{{ localize "TIDY5E.Weight" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-weight" data-maxlength="20">{{data.details.weight}}</span><input data-input="{{actor._id}}-weight" type="hidden" name="data.details.weight" value="{{data.details.weight}}"></li>
+                <li><span>{{ localize "TIDY5E.Eyes" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-eyes" data-maxlength="40">{{data.details.eyes}}</span><input data-input="{{actor._id}}-eyes" type="hidden" name="data.details.eyes" value="{{data.details.eyes}}"></li>
+                <li><span>{{ localize "TIDY5E.Skin" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-skin" data-maxlength="40">{{data.details.skin}}</span><input data-input="{{actor._id}}-skin" type="hidden" name="data.details.skin" value="{{data.details.skin}}"></li>
+                <li><span>{{ localize "TIDY5E.Hair" }}:</span><span {{#if owner}}contenteditable="true"{{/if}} spellcheck="false" data-target="{{actor._id}}-hair" data-maxlength="40">{{data.details.hair}}</span><input data-input="{{actor._id}}-hair" type="hidden" name="data.details.hair" value="{{data.details.hair}}"></li>
+              </ul>
+            </article>
+          </div>
+          <div class="main-notes">
+            <div class="left-notes note-entries">
+              <article>
+                <div class="section-titles biopage">{{ localize "SW5E.PersonalityTraits" }}</div>
+                {{editor content=data.details.trait target="data.details.trait" button=true owner=owner editable=editable}}
+              </article>
+              <article>
+                <div class="section-titles biopage">{{ localize "SW5E.Ideals" }}</div>
+                {{editor content=data.details.ideal target="data.details.ideal" button=true owner=owner editable=editable}}
+              </article>
+              <article>
+                <div class="section-titles biopage">{{ localize "SW5E.Bonds" }}</div>
+                {{editor content=data.details.bond target="data.details.bond" button=true owner=owner editable=editable}}
+              </article>
+              <article>
+                <div class="section-titles biopage">{{ localize "SW5E.Flaws" }}</div>
+                {{editor content=data.details.flaw target="data.details.flaw" button=true owner=owner editable=editable}}
+              </article>
+            </div>
 
-        <div class="right-notes note-entries">
-          <article>
-            <div class="section-titles biopage">{{ localize "SW5E.Appearance" }}</div>
-            {{editor content=data.details.appearance target="data.details.appearance" button=true owner=owner editable=editable}}
-          </article>
-          <article class="biography-notes">
-            <div class="section-titles">{{ localize "SW5E.Background" }}/{{ localize "SW5E.Biography" }}</div>
-            {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
-          </article>
+            <div class="right-notes note-entries">
+              <article class="appearance-notes">
+                <div class="section-titles biopage">{{ localize "SW5E.Appearance" }}</div>
+                {{editor content=data.details.appearance target="data.details.appearance" button=true owner=owner editable=editable}}
+              </article>
+              <article class="biography-notes">
+                <div class="section-titles">{{ localize "SW5E.Background" }}/{{ localize "SW5E.Biography" }}</div>
+                {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
+              </article>
+            </div>
+          </div>
+
         </div>
 
       </div>

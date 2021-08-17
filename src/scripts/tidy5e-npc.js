@@ -7,6 +7,7 @@ import { tidy5eContextMenu } from "./app/context-menu.js";
 import { tidy5eClassicControls } from "./app/classic-controls.js";
 import { tidy5eShowActorArt } from "./app/show-actor-art.js";
 import { tidy5eItemCard } from "./app/itemcard.js";
+import { tidy5eAmmoSwitch } from "./app/ammo-switch.js";
 
 /**
  * An Actor sheet for NPC type characters in the D&D5E system.
@@ -90,7 +91,12 @@ export default class Tidy5eNPC extends ActorSheet5eNPC {
         hasActions: true,
         dataset: { type: "feat", "activation.type": "action" }
       },
-      equipment: { label: game.i18n.localize("SW5E.Inventory"), items: [], dataset: { type: "loot" } }
+      equipment: {
+        label: game.i18n.localize("SW5E.Inventory"),
+        items: [],
+        hasActions: true,
+        dataset: { type: "loot" }
+      }
     };
 
     // Start by classifying items into groups for rendering
@@ -131,6 +137,25 @@ export default class Tidy5eNPC extends ActorSheet5eNPC {
         else features.passive.items.push(item);
       } else features.equipment.items.push(item);
     }
+
+    // Sort others equipements type
+    const sortingOrder = {
+      equipment: 1,
+      consumable: 2
+    };
+
+    features.equipment.items.sort((a, b) => {
+      if (!a.hasOwnProperty("type") || !b.hasOwnProperty("type")) return 0;
+
+      const first = a["type"].toLowerCase() in sortingOrder ? sortingOrder[a["type"]] : Number.MAX_SAFE_INTEGER;
+      const second = b["type"].toLowerCase() in sortingOrder ? sortingOrder[b["type"]] : Number.MAX_SAFE_INTEGER;
+
+      let result = 0;
+      if (first < second) result = -1;
+      else if (first > second) result = 1;
+
+      return result;
+    });
 
     // Assign and return
     data.features = Object.values(features);
@@ -198,6 +223,7 @@ export default class Tidy5eNPC extends ActorSheet5eNPC {
     if (game.settings.get("tidysw5e-sheet", "itemCardsForNpcs")) {
       tidy5eItemCard(html, actor);
     }
+    tidy5eAmmoSwitch(html, actor);
 
     html.find(".toggle-personality-info").click(async (event) => {
       if (actor.getFlag("tidysw5e-sheet", "showNpcPersonalityInfo")) {
@@ -465,6 +491,9 @@ async function setSheetClasses(app, html, data) {
   }
   if (game.settings.get("tidysw5e-sheet", "traitsAlwaysShownNpc")) {
     html.find(".tidy5e-sheet.tidy5e-npc .traits").addClass("always-visible");
+  }
+  if (game.settings.get("tidysw5e-sheet", "traitLabelsEnabled")) {
+    html.find(".tidy5e-sheet.tidy5e-npc .traits").addClass("show-labels");
   }
   if (game.settings.get("tidysw5e-sheet", "skillsAlwaysShownNpc")) {
     html.find(".tidy5e-sheet.tidy5e-npc .skills-list").addClass("always-visible");
