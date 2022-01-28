@@ -16,6 +16,15 @@ Thank you very much!
 
 ## Version History ##
 
+### Version 0.5.22 ###
+
+- version changed to simply "9"
+- rolls adapted to be asynchronous
+
+### Version 0.5.21 ###
+
+- manifest update for 0.9.9
+
 ### Version 0.5.20 ###
 
 - npc spell preparation fix
